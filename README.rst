@@ -2,7 +2,7 @@ Filereader
 ==========
 
 This is a very quick attempt at writing a tool that will read a text file
-loud to you using an external tool, in this case Apple's `say` command
+loud to you using an external tool, in this case Apple's ``say`` command
 available in any console on Max OS X. Ironically, this was written after
 reading Pieter Hintjens' book "Social Architecture" (much recommened) in
 some inspired meta-state of trying to automate what had just happend (or
@@ -22,6 +22,10 @@ listen to larger amounts of text read by such a super-crude tool like this.
 
 This code is not yet packaged or installable in any sense, being simply
 a prototype, and was tested only on Python 3.5.
+
+The self-test shown below does actually run on the online version of
+Pieter's book mentioned above after fetching it first from github (this
+will use the ``requests`` package which is the only external dependency).
 
 
 Sample output (self-test)
