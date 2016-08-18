@@ -4,7 +4,7 @@ Filereader
 This is a very quick attempt at writing a tool that will read a text file
 loud to you using an external tool, in this case Apple's ``say`` command
 available in any console on Max OS X. Ironically, this was written after
-reading Pieter Hintjens' book Social_Architecture_ (much recommened) in
+reading Pieter Hintjens' book `Social Architecture`_ (much recommened) in
 some inspired meta-state of trying to automate what had just happend (or
 something like this).
 
@@ -39,12 +39,18 @@ Sample output (self-test)
 
     (3) The Wisdom of Crowds
 
-    (4) Niccolo Machiavelli observed, in "//Discourses on the First Decade of Titus Livius//" that:
+    (4) Niccolo Machiavelli observed, in "//Discourses on the First Decade
+    of Titus Livius//" that:
 
-    (5) "As for prudence and stability of purpose, I affirm that a people is more prudent, more stable, and of better judgment than a prince. Nor is it without reason that the voice of the people has been likened to the voice of God; for we see that wide-spread beliefs fulfill themselves, and bring about marvelous results."
+    (5) "As for prudence and stability of purpose, I affirm that a people
+    is more prudent, more stable, and of better judgment than a prince.
+    Nor is it without reason that the voice of the people has been likened
+    to the voice of God; for we see that wide-spread beliefs fulfill
+    themselves, and bring about marvelous results."
 
     ^C
-    Created/updated bookmark to para #5 for file "socialarchitecture-master/ch00.txt" in bookmarks.json.
+    Created/updated bookmark to para #5 for file
+    "socialarchitecture-master/ch00.txt" in bookmarks.json.
 
 
-.. _Social_Architecture: https://www.amazon.com/Social-Architecture-Building-line-Communities-ebook/dp/B01F8I7Z7E
+.. _Social Architecture: https://www.amazon.com/Social-Architecture-Building-line-Communities-ebook/dp/B01F8I7Z7E
