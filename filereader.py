@@ -21,17 +21,35 @@ RATE = 210 # words per minute
 BOOKMARKS_FILE = 'bookmarks.json' # e.g. {'ch00.txt': {'para_num': 23}}
 
 
+def get_bookmarks(path):
+    "Get all bookmarks."
+
+    try:
+        bm = json.load(open(BOOKMARKS_FILE))
+    except IOError:
+        bm = {}
+
+    # add entry for path
+    base = os.path.basename(path)
+    if not base in bm:
+        bm[base] = {}
+
+    # and add initial bookmark to paragraph 0
+    if not 'para_num' in bm[base]:
+        bm[base]['para_num'] = 0
+
+    return bm
+
+
 def clean_para(para):
     "Clean Markdown-like format... only very basic stuff done."
 
     # comments
-    m = re.search('^// ', para)
-    if m:
+    if re.search('^// ', para)
         return ''
 
     # bookmarks (internal)
-    m = re.search('^\.bookmark ', para)
-    if m:
+    if re.search('^\.bookmark ', para)
         return ''
 
     # headlines
@@ -62,37 +80,29 @@ def read_paras(path):
     paras = [p for p in paras if p.strip()]
     f.close()
 
-    # bookmarking
-    try:
-        js = json.load(open(BOOKMARKS_FILE))
-    except IOError:
-        js = {}
+    # load bookmark
     base = os.path.basename(path)
-    if not base in js:
-        js[base] = {}
-    if not 'para_num' in js[base]:
-        js[base]['para_num'] = 0
-    start = js[base]['para_num']
+    bm = get_bookmarks(path)
+    last_bm = bm[base]['para_num']
 
     # read paragraphs
-    for i, p in enumerate(paras[start:]):
-        # print('({}) {}'.format(start + i, p))
+    for i, p in enumerate(paras[last_bm:]):
         p = clean_para(p)
         if not p:
             continue
-        print('({}) {}'.format(start + i, p))
+        print('({}) {}'.format(last_bm + i, p))
         print('')
         cmd = 'say -v {} -r {}'.format(VOICE, RATE)
         try:
             subprocess.check_output(cmd.split(' ') + ["%s" % p])
             time.sleep(0.4)
         except KeyboardInterrupt:
-            # bookmarking
-            js[base]['para_num'] = start + i
-            json.dump(js, open(BOOKMARKS_FILE, 'w'), indent=4)
+            # save bookmark
+            bm[base]['para_num'] = last_bm + i
+            json.dump(bm, open(BOOKMARKS_FILE, 'w'), indent=4)
             msg = '\nCreated/updated bookmark to para #{} for file "{}" in {}.'
-            print(msg.format(js[base]['para_num'], path, BOOKMARKS_FILE))
-            break
+            print(msg.format(bm[base]['para_num'], path, BOOKMARKS_FILE))
+            sys.exit(1)
 
 
 def test():
