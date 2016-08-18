@@ -4,7 +4,7 @@ Filereader
 This is a very quick attempt at writing a tool that will read a text file
 loud to you using an external tool, in this case Apple's ``say`` command
 available in any console on Max OS X. Ironically, this was written after
-reading Pieter Hintjens' book "Social Architecture" (much recommened) in
+reading Pieter Hintjens' book Social_Architecture_ (much recommened) in
 some inspired meta-state of trying to automate what had just happend (or
 something like this).
 
@@ -45,4 +45,6 @@ Sample output (self-test)
 
     ^C
     Created/updated bookmark to para #5 for file "socialarchitecture-master/ch00.txt" in bookmarks.json.
-    socialarchitecture-master/ch01.txt
+
+
+.. _Social_Architecture: https://www.amazon.com/Social-Architecture-Building-line-Communities-ebook/dp/B01F8I7Z7E
