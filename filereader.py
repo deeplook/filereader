@@ -11,6 +11,7 @@ import os
 import sys
 import json
 import time
+import platform
 import subprocess
 
 
@@ -45,11 +46,11 @@ def clean_para(para):
     "Clean Markdown-like format... only very basic stuff done."
 
     # comments
-    if re.search('^// ', para)
+    if re.search('^// ', para):
         return ''
 
     # bookmarks (internal)
-    if re.search('^\.bookmark ', para)
+    if re.search('^\.bookmark ', para):
         return ''
 
     # headlines
@@ -108,15 +109,25 @@ def read_paras(path):
 def test():
     "Test this on the book 'Social Architecture' by Pieter Hintjens."
 
+    # download
+    import zipfile
     url = 'https://github.com/hintjens/socialarchitecture/archive/master.zip'
     basename = os.path.basename(url)
     if not os.path.exists(basename):
         import requests
+        print('Downloading "{}"...'.format(url))
         data = requests.get(url).content
         open(basename, 'wb').write(data)
-    root = 'socialarchitecture-master'
+
+    # extract
+    zf = zipfile.ZipFile(basename)
+    root = zf.filelist[0].filename
     if not os.path.exists(root):
-        subprocess.check_output(['unzip', basename])
+        print('Extracting "{}"...'.format(basename))
+        zf.extractall()
+
+    # iterate
+    print('Reading...')
     for name in sorted(os.listdir(root)):
         if re.match('ch\d+\.txt', name):
             path = os.path.join(root, name)
@@ -132,6 +143,9 @@ if __name__ == '__main__':
         else:
             read_paras(path)
     except IndexError:
+        print('filereader.py - Read a textfile using "say" (on Mac OS X).')
         print('Usage: filereader.py <textfile>')
         print('       filereader.py -t')
         print('Stop with ctrl-c.')
+        if platform.system() != 'Darwin':
+            print('Warning: You are not running Max OS X (Darwin)!')
