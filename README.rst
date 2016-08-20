@@ -33,7 +33,21 @@ Sample output (self-test)
 
 .. code-block:: console
 
+    $ python filereader.py
+    filereader.py - Read a textfile using "say" (on Mac OS X).
+    Usage: filereader.py <textfile>
+           filereader.py -t
+    Stop with ctrl-c.
+
+Below the spoken textlines were wrapped manually in order to reduce the
+need for scrolling.
+
+.. code-block:: console
+
     $ python filereader.py -t
+    Downloading "https://github.com/hintjens/socialarchitecture/archive/master.zip"...
+    Extracting "master.zip"...
+    Reading...
     socialarchitecture-master/ch00.txt
     (2) Preface
 
